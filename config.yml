@@ -1,0 +1,11 @@
+db:
+  name:     default
+  user:     root
+  password: my-secret-pw
+  port:     3306
+  initialize: true
+standard:
+  timeoutinseconds : 10
+  pollintervalinmilliseconds : 250
+
+
