@@ -34,4 +34,3 @@ jobs:
         with:
          path: "."
          fail-build: true
-         severity-cutoff: critical 
