@@ -2,9 +2,12 @@ package tests
 
 import (
 	"fmt"
-	"github.com/jinzhu/configor"
+	"math/rand"
+	"os"
 	"os/exec"
 	"testing"
+
+	"github.com/jinzhu/configor"
 
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
@@ -44,3 +47,23 @@ var _ = AfterSuite(func() {
 		Expect(err).ShouldNot(HaveOccurred())
 	}
 })
+
+// randStringRunes is used for generating random string.
+func randStringRunes(n int) string {
+	letterRunes := []rune("abcdefghijklmnopqrstuvwxyz") // for generating random names for tests.
+	b := make([]rune, n)
+	for i := range b {
+		b[i] = letterRunes[rand.Intn(len(letterRunes))]
+	}
+	return string(b)
+}
+
+// getEnvDefault returns the value of the given environment variable or a
+// default value if the given environment variable is not set.
+func getEnvDefault(variable string, defaultVal string) string {
+	envVar, exists := os.LookupEnv(variable)
+	if !exists {
+		return defaultVal
+	}
+	return envVar
+}

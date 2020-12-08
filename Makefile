@@ -10,6 +10,8 @@ fmt:
 vet:
 	go vet ./...
 
+.PHONY: test
+
 # Run tests
 test: fmt vet
 	go test ./...
@@ -32,3 +34,12 @@ test-network:
 
 test-database:
 	ginkgo --focus=DATABASE ./...
+
+test-k8s:
+	ginkgo --focus=k8s ./...
+
+test-except-k8s:
+	ginkgo --skip=k8s ./...
+
+test-kubeflow:
+	cd ./tests/kubeflow/ && ginkgo --focus=kubeflow ./... 

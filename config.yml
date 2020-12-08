@@ -7,5 +7,6 @@ db:
 standard:
   timeoutinseconds : 10
   pollintervalinmilliseconds : 250
-
+k8s:
+  nodes : 2
 

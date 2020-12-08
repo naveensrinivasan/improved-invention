@@ -12,4 +12,7 @@ type Config struct {
 		TimeoutInSeconds           int `yaml:"timeoutinseconds"`
 		PollIntervalInMilliseconds int `yaml:"pollintervalinmilliseconds"`
 	} `yaml:"standard"`
+	K8s struct {
+		Nodes int `yaml:"nodes"`
+	} `yaml:"k8s"`
 }
