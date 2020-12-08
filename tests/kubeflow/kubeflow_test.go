@@ -79,6 +79,16 @@ var _ = Describe("kubeflow:Notebook controller", func() {
 				}
 				return p.Status.Phase == v1.PodRunning, nil
 			}, timeout, interval).Should(BeTrue())
+			By("By checking for that the status of the Notebook has been updated with Ready replicas")
+			Eventually(func() bool {
+				notebookLookupKey := types.NamespacedName{Name: Name, Namespace: Namespace}
+				createdNotebook := &nbv1beta1.Notebook{}
+				err := k8sClient.Get(context.TODO(), notebookLookupKey, createdNotebook)
+				if err != nil{
+					return false
+				}
+				return createdNotebook.Status.ReadyReplicas >= 1
+			},timeout,interval).Should(BeTrue())
 		})
 	})
 })
